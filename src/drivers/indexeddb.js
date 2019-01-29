@@ -166,7 +166,7 @@ function _getConnection(dbInfo, upgradeNeeded) {
             openreq.onupgradeneeded = function(e) {
                 var db = openreq.result;
                 try {
-                    db.createObjectStore(dbInfo.storeName);
+                    dbInfo.keyPath ? db.createObjectStore(dbInfo.storeName, dbInfo.keyPath) : db.createObjectStore(dbInfo.storeName;
                     if (e.oldVersion <= 1) {
                         // Added when support for blob shims was added
                         db.createObjectStore(DETECT_BLOB_SUPPORT_STORE);
